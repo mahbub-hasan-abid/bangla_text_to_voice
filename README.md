@@ -11,13 +11,12 @@
   - [Excel Sheet to Voice](#excel-sheet-to-voice)
   - [Renaming Files](#renaming-files)
 - [Example](#example)
-  - [Input](#input)
-  - [Output](#output)
-- [Screenshots](#screenshots)
-  - [Running the Script](#running-the-script)
-  - [Output Folder](#output-folder)
+  - [Text Input Example](#text-input-example)
+  - [Excel Input Example](#excel-input-example)
+  - [Renaming Files Example](#renaming-files-example)
 - [License](#license)
 - [Author](#author)
+- [Contact](#contact)
 
 ## Overview
 
@@ -101,9 +100,11 @@ This project allows users to convert text into audio files in Bengali or English
 
 2. The script will rename all audio files sequentially.
 
-### Example
+## Example
 
-#### Input
+### Text Input Example
+
+#### Text Input
 
 `text_input.txt`:
 
@@ -112,20 +113,41 @@ Hello, this is a test.
 This is the second line.
 ```
 
-#### Output
+#### Text Output
 
 - In `single` mode: One audio file named `output_audio.mp3`.
 - In `separate` mode: Two audio files named `line_1.mp3` and `line_2.mp3`.
 
-## Screenshots
+### Excel Input Example
 
-### Running the Script
+#### Excel Input
 
-![Script Execution](https://via.placeholder.com/800x400?text=Script+Execution+Screenshot)
+`text_input.xlsx`:
 
-### Output Folder
+| Text       |
+|------------|
+| Hello, this is a test. |
+| This is the second line. |
 
-![Output Folder](https://via.placeholder.com/800x400?text=Output+Folder+Screenshot)
+#### Excel Output
+
+- Two audio files named `row_1.mp3` and `row_2.mp3`.
+
+### Renaming Files Example
+
+#### Renaming Input
+
+Audio files:
+
+- `row_1.mp3`
+- `row_2.mp3`
+
+#### Renaming Output
+
+Renamed files:
+
+- `audio_1.mp3`
+- `audio_2.mp3`
 
 ## License
 
@@ -134,3 +156,10 @@ This project is licensed under the MIT License.
 ## Author
 
 Mahbub Hasan Abid
+
+## Contact
+
+For any complications or issues, please contact:
+
+Name: Mahbub Hasan Abid
+Email: [mahbub.hasan.abid@example.com](mailto:mahbub.hasan.abid@example.com)
