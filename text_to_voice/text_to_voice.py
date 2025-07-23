@@ -123,13 +123,88 @@ try:
 except Exception as e:
     print(f"Error: {e}")
 
-# Rename all files in the audio folder sequentially
+# Rename all files in the audio folder sequentially based on line numbers
 try:
     audio_files = [f for f in os.listdir(output_folder) if f.endswith('.mp3')]
+    audio_files.sort(key=lambda x: int(x.split('_')[1].split('.')[0]))  # Sort files numerically based on line numbers
     for index, file_name in enumerate(audio_files, start=1):
         old_path = os.path.join(output_folder, file_name)
         new_path = os.path.join(output_folder, f"{index}.mp3")
         os.rename(old_path, new_path)
-    print("Audio files renamed sequentially.")
+    print("Audio files renamed sequentially based on line numbers.")
 except Exception as e:
     print(f"Error renaming audio files: {e}")
+
+# Enhanced language detection for single characters
+try:
+    lines = text.splitlines()
+    for index, line in enumerate(lines, start=1):
+        detected_language = detect(line) if len(line.strip()) > 1 else 'en'  # Default to English for single characters
+        print(f"Detected language for line {index}: {detected_language}")
+
+        # Initialize pyttsx3 engine
+        engine = pyttsx3.init()
+
+        # Ensure audio file path is defined before saving
+        audio_file = os.path.join(output_folder, f"{index}.mp3")
+
+        if detected_language == 'bn':
+            try:
+                # Use gTTS for Bengali
+                print(f"Processing Bengali text for line {index}: {line}")
+                tts = gTTS(text=line, lang='bn', slow=False)
+                tts.save(audio_file)
+                print(f"Bengali audio saved to {audio_file}")
+            except Exception as e:
+                print(f"Error generating Bengali audio for line {index}: {e}")
+        elif detected_language == 'en':
+            try:
+                # Use gTTS for English with slower speech
+                print(f"Processing English text for line {index}: {line}")
+                tts = gTTS(text=line, lang='en', slow=True)
+                tts.save(audio_file)
+                print(f"English audio saved to {audio_file}")
+            except Exception as e:
+                print(f"Error generating English audio for line {index}: {e}")
+        else:
+            print(f"Unsupported language detected for line {index}: {detected_language}. Skipping.")
+except Exception as e:
+    print(f"Error processing lines: {e}")
+
+# Enhanced language detection for longer lines
+try:
+    lines = text.splitlines()
+    for index, line in enumerate(lines, start=1):
+        detected_language = detect(line) if len(line.strip()) > 1 else 'en'  # Default to English for single characters or fallback
+        if detected_language not in ['en', 'bn']:
+            detected_language = 'en'  # Fallback to English for unsupported languages
+        print(f"Detected language for line {index}: {detected_language}")
+
+        # Initialize pyttsx3 engine
+        engine = pyttsx3.init()
+
+        # Ensure audio file path is defined before saving
+        audio_file = os.path.join(output_folder, f"{index}.mp3")
+
+        if detected_language == 'bn':
+            try:
+                # Use gTTS for Bengali
+                print(f"Processing Bengali text for line {index}: {line}")
+                tts = gTTS(text=line, lang='bn', slow=False)
+                tts.save(audio_file)
+                print(f"Bengali audio saved to {audio_file}")
+            except Exception as e:
+                print(f"Error generating Bengali audio for line {index}: {e}")
+        elif detected_language == 'en':
+            try:
+                # Use gTTS for English with slower speech
+                print(f"Processing English text for line {index}: {line}")
+                tts = gTTS(text=line, lang='en', slow=True)
+                tts.save(audio_file)
+                print(f"English audio saved to {audio_file}")
+            except Exception as e:
+                print(f"Error generating English audio for line {index}: {e}")
+        else:
+            print(f"Unsupported language detected for line {index}: {detected_language}. Skipping.")
+except Exception as e:
+    print(f"Error processing lines: {e}")
