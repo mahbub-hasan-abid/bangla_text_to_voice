@@ -161,5 +161,5 @@ Mahbub Hasan Abid
 
 For any complications or issues, please contact:
 
-Name: Mahbub Hasan Abid
-Email: [mahbub.hasan.abid@example.com](mailto:mahbub.hasan.abid@example.com)
+Name: Mahbub Hasan Abid       
+Email: [mahbubhasanabid00@gmail.com](mailto:mahbubhasanabid00@gmail.com)
